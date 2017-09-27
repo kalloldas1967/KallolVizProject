@@ -25,13 +25,18 @@
 			width: 100px;
 			top: 80px;
 			} 
-			
+			p{
+			position: absolute;
+			font: 12px sans-serif;
+			top: 600px;
+			left : 60px;
+			text-align: left;
+			}
 			.path { 
 			  stroke: steelblue;
 			  stroke-width: 5;
 			  fill: none;
 			}
-			 
 			.axis path,
 			.axis line {
 				fill: none;
@@ -60,10 +65,9 @@
 		</style>
 	</head>
 	<body>
-		<div class="row">
+		<p style="font-size: 15px"><a href="http://www.screencast.com/t/fNFq3cox9TG">Design Document</a></br><a href="https://www.screencast.com/t/RGaO8clLd">Video Domo</a></p>
 			<div class="col-md-7 col-lg-7" id="area1"></div> 
 			<div class="col-md-4 col-lg-4 col-md-offset-1 col-lg-offset-1" id="area2"></div>
-		</div>
 		<h2>Dr. John Snow's map of London's 1854 cholera epidemic</h2>
 		<h3>The project is to show Dr John Snow’s 1854 London cholera epidemic data in visually interactive way. The intent of the project is to show the location of deaths relative to the pumps location in the map, which can help to conclude on the possible root cause of the epidemic and source of contamination. This is one of the very initial attempt of cognition through visual tool. Adequate graphical representation of death trend along time scale is also provided.</h3>
 		<script  type="text/javascript">
@@ -123,7 +127,7 @@
 						.attr("height", height+ margin.top + margin.bottom)
 						.append("g")
 						.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-						.style("background-color:", "green");
+						.style("background-color:", "#2ca25f");
 				
 				for (i in datasetMap) {
 				var lineFunction = d3.svg.line()
@@ -133,7 +137,7 @@
 				svg1.append("path")
 						.attr("d", lineFunction(datasetMap[i]))
 						.style("stroke-width", 3)
-						.style("stroke", "rgb(65,120,155)")
+						.style("stroke", "rgb(43,140,190)")
 						.attr("fill", "none");
 				}
 				d3.csv("pumps.csv", function(data){
@@ -267,15 +271,11 @@
 										return yScale(d[1]);
 										})
 									.attr("r", 3)
-									.attr("fill","red")
+									.attr("fill","#e34a33")
 					};
 				});
 			});
-			//Different Script
 			// set the dimensions and margins of the graph---
-			/*var margin = {top: 20, right: 20, bottom: 30, left: 50},
-				width = 960 - margin.left - margin.right,
-				height = 500 - margin.top - margin.bottom;*/
 			var margin = {top: 20, right: 40, bottom: 30, left: 50},
 						width = 400 - margin.left - margin.right,
 						height = 300 - margin.top - margin.bottom,
@@ -309,10 +309,6 @@
 						.append("div")
 						.attr("class", "tooltip")
 						.style("opacity", 0);
-
-			/*var div1 = d3.select("body")
-						.append("div")
-						.attr("class", "svg1")*/
 
 			// append the svg obgect to the body of the page
 			// appends a 'group' element to 'svg'
@@ -383,7 +379,7 @@
 						.attr("x",0 - (height / 2))
 						.attr("dy", "1em")
 						.style("text-anchor", "middle")
-						.text("Number of people died");
+						.text("Number of deaths");
 	  
 					svg2.append("text")
 						.attr("x", (width / 2))             
@@ -444,7 +440,7 @@
 
 			svg3.append("path")
 				.attr("class", "line")
-				.style("stroke", "red")
+				.style("stroke", "#e34a33")
 				.attr("id", "redLine")
 				.attr("d", valueline2(data));
 
@@ -500,14 +496,14 @@
 			// edit the Y Axis Left
 				svg3.append("g")	
 					.attr("class", "y axis")
-					.style("fill", "steelblue")
+					.style("fill", "#2b8cbe")
 					.attr("id", "blueAxis")
 					.call(yAxisLeft);
 
 				svg3.append("g")
 					.attr("class", "y axis")
 					.attr("transform", "translate(" + (width-2) + " ,0)")
-					.style("fill", "red")
+					.style("fill", "#e34a33")
 					.attr("id", "redAxis")
 					.call(yAxisRight);
 			// Add the blue line title
@@ -515,7 +511,7 @@
 					.attr("x", width/2)             
 					.attr("y", height/2 + margin.top)    
 					.attr("class", "legend")
-					.style("fill", "steelblue")         
+					.style("fill", "#2b8cbe")         
 					.on("click", function(){
 						// Determine if current line is visible
 						var active   = blueLine.active ? false : true,
@@ -535,7 +531,7 @@
 					.attr("x", width/2)             
 					.attr("y", height/2)    
 					.attr("class", "legend")
-					.style("fill", "red")         
+					.style("fill", "#e34a33")         
 					.on("click", function(){
 						// Determine if current line is visible
 						var active   = redLine.active ? false : true ,
@@ -555,7 +551,7 @@
 					.attr("x",0 - (height / 2))
 					.attr("dy", "1em")
 					.style("text-anchor", "middle")
-					.text("Number of people died");
+					.text("Number of deaths");
 				
 				svg3.append("text")
 					.attr("x", (width / 2))             
